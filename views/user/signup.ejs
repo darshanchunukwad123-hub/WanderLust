@@ -1,0 +1,29 @@
+<% layout("layouts/boilerplate") %>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-7 col-lg-6">
+                <h3>Sign Up to WanderLust:</h3>
+                <br><br>
+                <form method="post" action="/signup" class="needs-validation" novalidate>
+                    <div class="mb-3"> <label for="username" class="form-label">Username:</label>
+                        <input id="username" name="username" type="text" class="form-control" required>
+                        <div class="valid-feedback">username seems good!</div>
+                        <div class="invalid-feedback">username can't be empty!</div>
+                    </div>
+                    <div class="mb-3"> <label for="email" class="form-label">E-mail:</label>
+                        <input id="email" name="email" type="email" class="form-control" required>
+                        <div class="valid-feedback">email seems good!</div>
+                        <div class="invalid-feedback">email can't be empty!</div>
+                    </div>
+                    <div class="mb-3"> <label for="password" class="form-label">Password:</label>
+                        <input id="password" name="password" type="text" class="form-control" required>
+                        <div class="valid-feedback">password seems good!</div>
+                        <div class="invalid-feedback">password can't be empty!</div>
+                    </div>
+                    <br>
+                    <button class="btn btn-outline-success">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>

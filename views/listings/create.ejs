@@ -1,0 +1,133 @@
+<% layout("layouts/boilerplate") %>
+
+    <div class="container mt-4 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-7 col-lg-6">
+
+                <h3 class="mb-4">Create a New Listing</h3>
+
+                <form action="/listings/create" method="POST" enctype="multipart/form-data" class="needs-validation"
+                    novalidate>
+
+                    <!-- Title -->
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" name="listing[title]" id="title" class="form-control"
+                            placeholder="Enter listing title" required>
+
+                        <div class="invalid-feedback">
+                            Please enter a title.
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="mb-3">
+                        <label for="description" class="form-label">
+                            Description
+                        </label>
+
+                        <textarea name="listing[description]" id="description" class="form-control"
+                            placeholder="Describe your property" rows="4" required></textarea>
+
+                        <div class="invalid-feedback">
+                            Please enter a description.
+                        </div>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="mb-3">
+                        <label for="price" class="form-label">
+                            Price per night (₹)
+                        </label>
+
+                        <input type="number" name="listing[price]" id="price" class="form-control"
+                            placeholder="Enter price" min="0" required>
+
+                        <div class="invalid-feedback">
+                            Please enter a valid price.
+                        </div>
+                    </div>
+
+                    <!-- Country -->
+                    <div class="mb-3">
+                        <label for="country" class="form-label">
+                            Country
+                        </label>
+
+                        <input type="text" name="listing[country]" id="country" class="form-control"
+                            placeholder="Enter country" required>
+
+                        <div class="invalid-feedback">
+                            Please enter a country.
+                        </div>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="mb-3">
+                        <label for="location" class="form-label">
+                            Location
+                        </label>
+
+                        <input type="text" name="listing[location]" id="location" class="form-control"
+                            placeholder="Enter city or location" required>
+
+                        <div class="invalid-feedback">
+                            Please enter a location.
+                        </div>
+                    </div>
+
+                    <!-- Category -->
+                    <div class="mb-3">
+                        <label for="category" class="form-label">
+                            Category
+                        </label>
+
+                        <select name="listing[category]" id="category" class="form-select" required>
+
+                            <option value="" selected disabled>
+                                Select a category
+                            </option>
+
+                            <option value="Trending">Trending</option>
+                            <option value="Rooms">Rooms</option>
+                            <option value="Amazing views">Amazing views</option>
+                            <option value="Iconic cities">Iconic cities</option>
+                            <option value="Beach">Beach</option>
+                            <option value="Cabins">Cabins</option>
+                            <option value="OMG!">OMG!</option>
+                            <option value="Amazing pools">Amazing pools</option>
+                            <option value="Lakefronts">Lakefronts</option>
+                            <option value="Mountain cities">Mountain cities</option>
+                            <option value="Arctic places">Arctic places</option>
+
+                        </select>
+
+                        <div class="invalid-feedback">
+                            Please select a category.
+                        </div>
+                    </div>
+
+                    <!-- Image -->
+                    <div class="mb-3">
+                        <label for="image" class="form-label">
+                            Upload Listing Image
+                        </label>
+
+                        <input type="file" name="listing[image]" id="image" class="form-control" accept="image/*"
+                            required>
+
+                        <div class="invalid-feedback">
+                            Please upload an image.
+                        </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <button type="submit" class="btn btn-dark">
+                        Add Listing
+                    </button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>

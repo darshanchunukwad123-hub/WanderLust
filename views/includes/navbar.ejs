@@ -1,0 +1,66 @@
+<nav class="navbar navbar-expand-md bg-body-light border-bottom border-bottom-dark sticky-top" data-bs-theme="light">
+    <div class="container-fluid">
+
+        <a class="navbar-brand" href="/listings">
+            <i class="fa-solid fa-compass-drafting"></i>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+            <div class="navbar-nav">
+                <a class="nav-link" href="/listings">
+                    <b>Explore destinations</b>
+                </a>
+            </div>
+
+            <div class="navabar-nav ms-auto">
+                <form class="d-flex position-relative" role="search" action="/listings" method="GET"
+                    id="destinationSearchForm">
+                    <div class="position-relative">
+
+                        <input class="form-control me-2 search-inp" type="search" name="search"
+                            id="destinationSearchInput" placeholder="Search for destinations"
+                            value="<%= typeof search !== 'undefined' ? search : '' %>" autocomplete="off"
+                            aria-label="Search destinations" aria-autocomplete="list"
+                            aria-controls="destinationSuggestions" aria-expanded="false">
+
+                        <div id="destinationSuggestions" class="list-group position-absolute w-100 shadow-sm"
+                            role="listbox" style="display: none; z-index: 1050; top: 100%;"></div>
+
+                    </div>
+                    &nbsp;&nbsp;
+                    <button class="btn btn-search btn-danger" type="submit">
+                        <i class="fa-brands fa-sistrix"></i> Search
+                    </button>
+                </form>
+            </div>
+
+            <div class="navbar-nav ms-auto">
+
+                <a class="nav-link" href="/listings/add">
+                    <b>WanderLust your home</b>
+                </a>
+
+                <% if (!currUser) { %>
+                    <a class="nav-link" href="/signup">
+                        <b>Sign up</b>
+                    </a>
+
+                    <a class="nav-link" href="/login">
+                        <b>Log in</b>
+                    </a>
+                    <% } else { %>
+                        <a class="nav-link" href="/logout">
+                            <b>Log out</b>
+                        </a>
+                        <% } %>
+
+            </div>
+
+        </div>
+    </div>
+</nav>

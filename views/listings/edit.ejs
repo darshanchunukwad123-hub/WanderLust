@@ -1,0 +1,159 @@
+
+<% layout("layouts/boilerplate") %>
+
+<body>
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-7 col-lg-6">
+            <h2>Edit the following listing:</h2>
+
+            <form
+                method="post"
+                action="/listings/<%= listing._id %>?_method=PATCH"
+                enctype="multipart/form-data"
+                novalidate
+                class="needs-validation"
+                onsubmit="return confirm('Are you sure you want to edit this listing?');"
+            >
+                <!-- Title -->
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title:</label>
+                    <input
+                        id="title"
+                        name="listing[title]"
+                        value="<%= listing.title %>"
+                        type="text"
+                        class="form-control"
+                        required
+                    >
+                    <div class="valid-feedback">Title looks good!</div>
+                    <div class="invalid-feedback">Title can't be empty!</div>
+                </div>
+
+                <!-- Price and Country -->
+                <div class="row">
+                    <div class="mb-3 col-md-4">
+                        <label for="price" class="form-label">Price:</label>
+                        <input
+                            id="price"
+                            name="listing[price]"
+                            value="<%= listing.price %>"
+                            type="number"
+                            min="0"
+                            class="form-control"
+                            required
+                        >
+                        <div class="valid-feedback">Price looks good!</div>
+                        <div class="invalid-feedback">Price can't be empty!</div>
+                    </div>
+
+                    <div class="mb-3 col-md-8">
+                        <label for="country" class="form-label">Country:</label>
+                        <input
+                            id="country"
+                            name="listing[country]"
+                            value="<%= listing.country %>"
+                            type="text"
+                            class="form-control"
+                            required
+                        >
+                        <div class="valid-feedback">Very nice country!</div>
+                        <div class="invalid-feedback">Country can't be empty!</div>
+                    </div>
+                </div>
+
+                <!-- Location -->
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location:</label>
+                    <input
+                        id="location"
+                        name="listing[location]"
+                        value="<%= listing.location %>"
+                        type="text"
+                        class="form-control"
+                        required
+                    >
+                    <div class="valid-feedback">Very nice location!</div>
+                    <div class="invalid-feedback">Location can't be empty!</div>
+                </div>
+
+                <!-- Category -->
+                <div class="mb-3">
+                    <label for="category" class="form-label">Category:</label>
+                    <select
+                        id="category"
+                        name="listing[category]"
+                        class="form-select"
+                        required
+                    >
+                        <% const categories = [
+                            "Trending",
+                            "Rooms",
+                            "Amazing views",
+                            "Iconic cities",
+                            "Beach",
+                            "Cabins",
+                            "OMG!",
+                            "Amazing pools",
+                            "Lakefronts",
+                            "Mountain cities",
+                            "Arctic places"
+                        ]; %>
+
+                        <% categories.forEach(category => { %>
+                            <option
+                                value="<%= category %>"
+                                <%= (listing.category || "Trending") === category ? "selected" : "" %>
+                            >
+                                <%= category %>
+                            </option>
+                        <% }); %>
+                    </select>
+                    <div class="valid-feedback">Category selected!</div>
+                    <div class="invalid-feedback">Please select a category.</div>
+                </div>
+
+                <!-- Description -->
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description:</label>
+                    <textarea
+                        id="description"
+                        name="listing[description]"
+                        placeholder="Enter a detailed description:"
+                        class="form-control"
+                        required
+                    ><%= listing.description %></textarea>
+                    <div class="valid-feedback">Description looks good!</div>
+                    <div class="invalid-feedback">Description can't be empty!</div>
+                </div>
+
+                <!-- Current Image -->
+                <div class="mb-3">
+                    Current image of your listing:<br>
+                    <img
+                        src="<%= ogImageUrl %>"
+                        alt="Current listing image"
+                        class="img-fluid rounded"
+                        style="width: 250px; height: 180px; object-fit: cover;"
+                    >
+                </div>
+
+                <!-- Replace Image -->
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image:</label>
+                    <input
+                        id="image"
+                        name="listing[image]"
+                        class="form-control"
+                        type="file"
+                        accept="image/*"
+                    >
+                    <div class="valid-feedback">Image looks good!</div>
+                </div>
+
+                <br>
+                <button type="submit" class="btn btn-dark">Edit</button>
+            </form>
+        </div>
+    </div>
+</body>
+

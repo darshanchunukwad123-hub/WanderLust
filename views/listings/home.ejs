@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WanderLust</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f7f6f3;
+        }
+
+        .welcome {
+            margin-top: 15vh;
+            text-align: center;
+        }
+
+        h2 {
+            color: #03a9d9;
+            font-weight: 600;
+            margin-bottom: 45px;
+        }
+
+        .option-card {
+            background-color: white;
+            width: 280px;
+            margin: 0 auto 20px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: 0.2s;
+        }
+
+        .option-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .option-btn {
+            width: 100%;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="welcome">
+
+            <h2>
+                Choose an option below to get started with
+                <span style="color: #ff385c;">WanderLust</span>
+            </h2>
+
+            <div class="option-card">
+                <form method="get" action="/signup">
+                    <button class="btn btn-outline-primary option-btn" type="submit">
+                        New user? Sign up
+                    </button>
+                </form>
+            </div>
+
+            <div class="option-card">
+                <form method="get" action="/login">
+                    <button class="btn btn-outline-primary option-btn" type="submit">
+                        Existing user? Log in
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

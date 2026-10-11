@@ -1,0 +1,865 @@
+body {
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-optical-sizing: auto !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer {
+    flex-shrink: 0;
+}
+
+.navbar {
+    height: 5rem;
+    background-color: rgb(105, 219, 241);
+}
+
+.fa-solid {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fe424d;
+}
+
+.nav-link {
+    font-size: 1rem !important;
+    color: #111010 !important;
+}
+
+.f-info a {
+    text-decoration: none;
+    color: #111010;
+}
+
+.f-links a:hover {
+    text-decoration: underline;
+}
+
+.f-links,
+.f-socials,
+.f-brand {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.f-socials a {
+    font-size: 1.5rem;
+    margin: 0 1rem;
+}
+
+.f-info {
+    width: 100%;
+    margin-top: 2rem;
+    background-color: rgb(133, 226, 247);
+}
+
+.f-links a {
+    margin-right: 1rem;
+}
+
+/* cards */
+
+.listing-card {
+
+    border: none !important;
+    margin-top: 2rem !important;
+
+}
+
+
+.card-img-top {
+    margin-bottom: 1.5rem !important;
+    width: 100% !important;
+    height: 20rem !important;
+    object-fit: cover !important;
+    border-radius: 1rem !important;
+}
+
+.card-body {
+    padding: 0 !important;
+}
+
+.listing-image {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.listing-image:hover {
+    transform: scale(1.02);
+}
+
+.card-title a {
+    text-decoration: none;
+    color: #111010;
+}
+
+.card-text {
+    color: #111010 !important;
+    font-weight: bolder;
+    opacity: 1 !important;
+    font-size: medium !important;
+}
+
+/* listing */
+
+.btns {
+    display: flex;
+    justify-content: center;
+    margin-left: 1rem;
+
+
+
+}
+
+/* Fullscreen image viewer */
+
+.image-viewer {
+
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+
+    background: rgba(0, 0, 0, 0.8);
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+.image-viewer img {
+    max-width: 85vw;
+    max-height: 85vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+
+    transition: transform 0.2s ease;
+}
+
+
+
+/* Close button */
+
+.close-image {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+
+    background: none;
+    border: none;
+
+    color: white;
+    font-size: 45px;
+
+    cursor: pointer;
+
+    z-index: 10000;
+}
+
+
+/* Zoom buttons */
+
+.zoom-btn {
+    position: absolute;
+
+    bottom: 30px;
+    right: 90px;
+
+    width: 45px;
+    height: 45px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: white;
+    color: black;
+
+    font-size: 28px;
+
+    cursor: pointer;
+}
+
+.zoom-out {
+    right: 35px;
+}
+
+/* map */
+
+#map {
+    height: 400px;
+    width: 100%;
+    border-radius: 12px;
+}
+
+
+/* ============================================
+   WanderLust - Custom Map Marker
+   ============================================ */
+
+.wanderlust-marker {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 48px;
+    padding: 0;
+
+    color: #fe424d;
+    background: transparent;
+    border: 0;
+
+    cursor: pointer;
+    outline: none;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Default location pin */
+.wanderlust-marker .marker-pin {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 1;
+    transform: scale(1);
+
+    transition:
+        opacity 180ms ease,
+        transform 220ms ease;
+}
+
+.wanderlust-marker .marker-pin svg {
+    display: block;
+    width: 32px;
+    height: 42px;
+
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.22));
+}
+
+/* WanderLust logo badge */
+.wanderlust-marker .marker-logo {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    color: #fe424d;
+    background: #21c1ed;
+
+    border: 2px solid #fe424d;
+    border-radius: 50%;
+
+    font-size: 19px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.22);
+
+    opacity: 0;
+    transform: scale(0.65);
+
+    pointer-events: none;
+
+    transition:
+        opacity 180ms ease,
+        transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Active state: hide the pin, show the logo */
+.wanderlust-marker.is-active .marker-pin {
+    opacity: 0;
+    transform: scale(0.65);
+}
+
+.wanderlust-marker.is-active .marker-logo {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Hover effect */
+@media (hover: hover) {
+    .wanderlust-marker:hover {
+        z-index: 2;
+    }
+
+    .wanderlust-marker:hover .marker-pin svg {
+        filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.3));
+    }
+
+    .wanderlust-marker:hover .marker-logo {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+    }
+}
+
+/* Accessible keyboard focus */
+.wanderlust-marker:focus-visible .marker-logo,
+.wanderlust-marker:focus-visible .marker-pin svg {
+    outline: 3px solid #222222;
+    outline-offset: 3px;
+}
+
+/* ============================================
+   WanderLust - Map Popup
+   ============================================ */
+
+.wanderlust-map-popup .mapboxgl-popup-content {
+    padding: 18px 20px;
+    border-radius: 14px;
+
+    box-shadow: 0 5px 24px rgba(0, 0, 0, 0.14);
+
+    font-family: inherit;
+}
+
+.wanderlust-map-popup .mapboxgl-popup-close-button {
+    width: 30px;
+    height: 30px;
+
+    color: #555555;
+    font-size: 20px;
+
+    border-radius: 50%;
+}
+
+.wanderlust-map-popup .mapboxgl-popup-close-button:hover {
+    color: #222222;
+    background: #f5f5f5;
+}
+
+.wanderlust-popup-title {
+    margin: 0 22px 8px 0;
+
+    color: #222222;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.wanderlust-popup-description {
+    margin: 0;
+
+    color: #717171;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+
+    .wanderlust-marker .marker-pin,
+    .wanderlust-marker .marker-logo {
+        transition: none;
+    }
+}
+
+/* search */
+
+.btn-search i {
+    display: inline;
+    margin-right: 0.5rem;
+}
+
+.btn-search {
+    padding: 0 1rem 0 1rem;
+    border-radius: 20px !important;
+}
+
+.search-inp {
+    width: 250px;
+    min-width: 0;
+    border-radius: 25px !important;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.85rem;
+}
+
+.search-inp::placeholder {
+    font-size: 0.85rem;
+    color: #777;
+    opacity: 1;
+}
+
+/* =========================================
+       WANDERLUST — FILTER BAR
+    ========================================= */
+
+.filters-container {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    margin: 24px 0;
+    min-width: 0;
+}
+
+/* Horizontally scrollable filters */
+#filters {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex: 1;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    padding: 8px 2px;
+}
+
+#filters::-webkit-scrollbar {
+    display: none;
+}
+
+/* Individual filters: icon above label */
+.filter {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.6rem;
+    flex: 0 0 auto;
+    min-width: 75px;
+    min-height: 58px;
+    padding: 4px 2px 10px;
+    text-align: center;
+    color: #717171;
+    opacity: 0.75;
+    cursor: pointer;
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.filter i {
+    display: block;
+    margin: 0;
+    font-size: 1.2rem;
+    line-height: 1;
+    color: inherit;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.filter p {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: inherit;
+    white-space: nowrap;
+}
+
+/* Subtle underline, positioned relative to each filter */
+.filter::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 15%;
+    width: 70%;
+    height: 2px;
+    border-radius: 2px;
+    background: #222222;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.2s ease;
+}
+
+.filter:hover,
+.filter:focus-visible {
+    opacity: 1;
+    color: #fe424d;
+
+}
+
+.filter:hover i {
+    transform: translateY(-1px);
+}
+
+.filter:hover::after,
+.filter:focus-visible::after {
+    transform: scaleX(1);
+}
+
+/* Scroll buttons */
+.filter-scroll-btn {
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #dddddd;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #222222;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.filter-scroll-btn:hover {
+    background: #f7f7f7;
+    border-color: #222222;
+}
+
+.filter-scroll-btn:focus-visible {
+    outline: 2px solid #222222;
+    outline-offset: 3px;
+}
+
+/* =========================================
+       TAX TOGGLE
+    ========================================= */
+
+/* =========================================
+WANDERLUST — TAX TOGGLE
+========================================= */
+
+/* Tax toggle box */
+.tax-toggle {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    border: 1px solid #dddddd;
+    border-radius: 12px;
+    background-color: #ffffff;
+    white-space: nowrap;
+}
+
+/* Override Bootstrap's default switch positioning */
+.tax-toggle .form-check.form-switch {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    min-height: 0;
+}
+
+/* Switch */
+.tax-toggle .form-check-input {
+    float: none !important;
+    margin: 0 !important;
+    margin-left: 0 !important;
+    flex-shrink: 0;
+    width: 2.2rem;
+    height: 1.2rem;
+    cursor: pointer;
+    box-shadow: none;
+}
+
+/* Checked state */
+.tax-toggle .form-check-input:checked {
+    background-color: #fe424d;
+    border-color: #fe424d;
+}
+
+/* Label */
+.tax-toggle .form-check-label {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #333333;
+    cursor: pointer;
+}
+
+/* Mobile adjustments */
+@media (max-width: 576px) {
+    .tax-toggle {
+        padding: 10px 12px;
+        max-width: 100%;
+        white-space: normal;
+    }
+
+    .tax-toggle .form-check-label {
+        font-size: 11px;
+    }
+
+
+}
+
+
+/* =========================================
+       LISTING CARDS
+    ========================================= */
+
+.listings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px 24px;
+    margin-bottom: 40px;
+}
+
+.listing-card {
+    width: 100%;
+    min-width: 0;
+    border: none;
+    background: transparent;
+    overflow: hidden;
+}
+
+.listing-image {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: filter 0.2s ease;
+}
+
+.listing-image:hover {
+    filter: brightness(0.96);
+}
+
+.listing-card .card-body {
+    padding: 12px 2px;
+}
+
+.listing-card .card-title {
+    margin-bottom: 7px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.listing-card .card-title a {
+    color: #222222;
+    text-decoration: none;
+}
+
+.listing-card .card-title a:hover {
+    text-decoration: underline;
+}
+
+.listing-card .card-text {
+    margin-bottom: 12px;
+    color: #555555;
+    font-size: 14px;
+}
+
+
+/* =========================================
+WANDERLUST — SMOOTH SHINY LISTING BUTTON
+========================================= */
+
+.listing-card .btn-primary {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    padding: 9px 18px;
+    border: 1px solid #fe424d;
+    border-radius: 9px;
+
+    background: linear-gradient(110deg,
+            #fe424d 0%,
+            #f52f40 50%,
+            #e92739 100%);
+
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+
+    box-shadow: 0 3px 10px rgba(254, 66, 77, 0.16);
+
+    transform: translateY(0);
+
+    transition:
+        background 0.45s ease,
+        box-shadow 0.45s ease,
+        border-color 0.45s ease,
+        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.45s ease;
+
+}
+
+/* Moving light reflection */
+.listing-card .btn-primary::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -85%;
+
+    width: 48%;
+    height: 200%;
+
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.08) 20%,
+            rgba(255, 255, 255, 0.48) 50%,
+            rgba(255, 255, 255, 0.08) 80%,
+            transparent 100%);
+
+    transform: skewX(-22deg);
+
+    /* Slower, smoother shine */
+    transition: left 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+
+    pointer-events: none;
+    z-index: 1;
+
+}
+
+/* Hover: subtle lift, shine, and crimson glow */
+.listing-card .btn-primary:hover {
+    background: linear-gradient(110deg,
+            #ff5963 0%,
+            #f52f40 48%,
+            #d91e34 100%);
+
+    border-color: #ff6670;
+    color: #ffffff;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 22px rgba(254, 66, 77, 0.30),
+        0 0 12px rgba(254, 66, 77, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+
+    filter: brightness(1.04);
+
+}
+
+/* Sweep the shine across the button */
+.listing-card .btn-primary:hover::before {
+    left: 145%;
+}
+
+/* No extra pressed-down effect on click */
+.listing-card .btn-primary:active {
+    transform: translateY(-2px);
+    filter: brightness(1.04);
+}
+
+/* Keyboard accessibility */
+.listing-card .btn-primary:focus-visible {
+    outline: 3px solid rgba(254, 66, 77, 0.4);
+    outline-offset: 4px;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+
+    .listing-card .btn-primary,
+    .listing-card .btn-primary::before {
+        transition: none;
+    }
+
+    .listing-card .btn-primary:hover,
+    .listing-card .btn-primary:active {
+        transform: none;
+    }
+
+    .listing-card .btn-primary::before {
+        display: none;
+    }
+
+
+}
+
+
+/* =========================================
+       RESPONSIVE LAYOUT
+    ========================================= */
+
+@media (max-width: 1199px) {
+    .filters-container {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    #filters {
+        order: 1;
+        flex-basis: 100%;
+    }
+
+    .filter-scroll-btn {
+        display: none;
+    }
+
+    .tax-toggle {
+        order: 2;
+        margin-left: auto;
+    }
+
+    .listings-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+    .filters-container {
+        margin: 16px 0 22px;
+    }
+
+    #filters {
+        gap: 24px;
+    }
+
+    .filter {
+        min-width: 64px;
+        min-height: 58px;
+    }
+
+    .filter i {
+        font-size: 20px;
+    }
+
+    .tax-toggle {
+        padding: 10px 12px;
+        max-width: 100%;
+        white-space: normal;
+    }
+
+    .tax-toggle .form-check-label {
+        font-size: 11px;
+    }
+
+    .listings-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+    }
+
+    .listing-image {
+        height: 250px;
+    }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+
+    #filters,
+    .filter,
+    .filter::after,
+    .filter i,
+    .filter-scroll-btn,
+    .tax-toggle,
+    .listing-image {
+        scroll-behavior: auto;
+        transition: none;
+    }
+}

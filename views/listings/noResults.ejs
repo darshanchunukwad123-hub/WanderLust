@@ -1,0 +1,109 @@
+<% layout("layouts/boilerplate") %>
+
+    <div class="container py-5">
+
+        <div class="row justify-content-center text-center">
+            <div class="col-12 col-md-9 col-lg-7">
+
+                <div class="mb-4">
+                    <i class="fa-solid fa-magnifying-glass-location" style="font-size: 2.2rem; color: #fe424d;"></i>
+                </div>
+
+                <h2 class="mb-3">No listings found</h2>
+
+                <p class="text-muted mb-2">
+                    <% if (search) { %>
+                        We couldn't find any listings matching
+                        <strong>"<%= search %>"</strong>.
+                        <% } else { %>
+                            We couldn't find any listings matching your selected filters.
+                            <% } %>
+                </p>
+
+                <% if (category) { %>
+                    <p class="text-muted">
+                        Category: <strong>
+                            <%= category %>
+                        </strong>
+                    </p>
+                    <% } %>
+
+                        <p class="text-muted mb-4">
+                            Try another destination, check your spelling, or explore
+                            some of our available stays.
+                        </p>
+
+                        <form action="/listings" method="GET" class="d-flex justify-content-center gap-2 mb-4">
+                            <input class="form-control" type="search" name="search" value="<%= search %>"
+                                placeholder="Try another destination" aria-label="Search another destination"
+                                style="max-width: 350px;">
+
+                            <button
+                                class="btn btn-danger d-inline-flex align-items-center justify-content-center gap-2"
+                                type="submit">
+                                <i class="fa-solid fa-magnifying-glass" style="font-size: 0.9rem; color: #fff;"></i>
+                                <span>Search</span>
+                                </button>
+                        </form>
+
+                        <a href="/listings" class="btn btn-outline-dark">
+                            <i class="fa-solid fa-compass"></i>
+                            Explore all listings
+                        </a>
+
+            </div>
+        </div>
+
+
+        <% if (suggestedListings.length> 0) { %>
+
+            <hr class="my-5">
+
+            <h4 class="mb-4 text-center">You might like these stays</h4>
+
+            <div class="row g-4">
+
+                <% suggestedListings.forEach(listing=> { %>
+
+                    <div class="col-12 col-sm-6 col-lg-3">
+
+                        <a href="/listings/<%= listing._id %>" class="text-decoration-none text-dark">
+
+                            <div class="card h-100">
+
+                                <img src="<%= listing.image?.url || '' %>" class="card-img-top"
+                                    alt="<%= listing.title %>" loading="lazy" style="height: 200px; object-fit: cover;">
+
+                                <div class="card-body">
+
+                                    <h6 class="card-title">
+                                        <%= listing.title %>
+                                    </h6>
+
+                                    <p class="text-muted small mb-2">
+                                        <%= listing.location %>,
+                                            <%= listing.country %>
+                                    </p>
+
+                                    <p class="mb-0">
+                                        <strong>
+                                            &#8377;<%= Number(listing.price).toLocaleString("en-IN") %>
+                                        </strong>
+                                        / night
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </a>
+
+                    </div>
+
+                    <% }); %>
+
+            </div>
+
+            <% } %>
+
+    </div>
